@@ -1,0 +1,6 @@
+services:
+  redis:
+    image: redis:latest
+    container_name: opentelemetry-bullmq-intro-redis
+    ports:
+      - '6379:6379'
