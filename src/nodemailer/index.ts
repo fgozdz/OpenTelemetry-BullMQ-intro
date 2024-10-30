@@ -1,5 +1,7 @@
 import nodemailer from 'nodemailer';
+import { Job } from 'bullmq';
 import config from '../config';
+import { NodemailerInterface } from '../interfaces/nodemailer.interface';
 
 const { nodemailerConfig } = config;
 
@@ -12,4 +14,4 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-export default transporter;
+export default (job: Job<NodemailerInterface>) => transporter.sendMail(job.data);

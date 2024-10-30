@@ -18,5 +18,13 @@ export default {
         db: process.env.POSTGRES_DB,
         host: process.env.POSTGRES_HOST,
         port: parseInt(process.env.POSTGRES_PORT || '5432')
-    }
+    },
+    bullmqConfig: {
+        concurrency: parseInt(process.env.BULLMQ_QUEUE_CONCURRENCY || '1'),
+        queueName: process.env.BULLMQ_QUEUE_NAME || 'mailbot',
+        connection: {
+          host: process.env.BULLMQ_REDIS_HOST || 'redis',
+          port: parseInt(process.env.BULLMQ_REDIS_PORT || '6379'),
+        },
+    },
 };

@@ -1,10 +1,19 @@
-import nodemailer from '../nodemailer';
+import { NodemailerInterface } from '../interfaces/nodemailer.interface';
+import { Queue } from 'bullmq';
+import config from '../config';
 import SubscribedUserCrud from '../crud/subscribedUser.crud';
 
+const { bullmqConfig } = config;
+
 class NewsletterService {
-    private subscribedUserCRUD: typeof SubscribedUserCrud;;
+    private queue: Queue;
+    private subscribedUserCRUD: typeof SubscribedUserCrud;
 
     constructor() {
+        this.queue = new Queue<NodemailerInterface>(bullmqConfig.queueName, {
+            connection: bullmqConfig.connection,
+        });
+
         this.subscribedUserCRUD = SubscribedUserCrud;
     }
 
@@ -14,12 +23,14 @@ class NewsletterService {
             return false;
         }
 
-        await nodemailer.sendMail({
+        await this.queue.add('send-simple', {
             from: 'newsletter@example.email',
             subject: 'Subscribed to newsletter',
             text: 'You have succesfully subscribed to a newsletter',
             to: `${email}`,
         });
+
+        console.log(`Enqueued an email sending`);
 
         return subscribedUser;
     }
@@ -30,13 +41,15 @@ class NewsletterService {
             return false;
         }
 
-        await nodemailer.sendMail({
+        await this.queue.add('send-simple', {
             from: 'newsletter@example.email',
             subject: 'Unsubscribed from a newsletter',
             text: 'You have succesfully unsubscribed from a newsletter',
             to: `${email}`,
-        })
-        
+        });
+
+        console.log(`Enqueued an email sending`);
+
         return removedUser;
     }
 }
