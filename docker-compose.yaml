@@ -14,3 +14,10 @@ services:
     container_name: opentelemetry_bullmq_redis
     ports:
       - '6379:6379'
+
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: opentelemetry_jaeger_redis
+    ports:
+      - '16686:16686'
+      - '4318:4318'
