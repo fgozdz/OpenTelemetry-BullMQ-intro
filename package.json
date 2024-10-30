@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsx ./src/index.ts",
-    "start:worker": "tsx ./src/worker.ts"
+    "start": "tsx --import ./src/instrumentation/instrumentation.producer.ts ./src/index.ts",
+    "start:worker": "tsx --import ./src/instrumentation/instrumentation.consumer.ts ./src/worker.ts"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +19,13 @@
     "typescript": "^5.6.3"
   },
   "dependencies": {
+    "@opentelemetry/instrumentation-express": "^0.44.0",
+    "@opentelemetry/instrumentation-http": "^0.54.0",
+    "@opentelemetry/instrumentation-ioredis": "^0.44.0",
+    "@opentelemetry/instrumentation-pg": "^0.47.0",
+    "@opentelemetry/sdk-metrics": "^1.27.0",
+    "@opentelemetry/sdk-node": "^0.54.0",
+    "@opentelemetry/sdk-trace-node": "^1.27.0",
     "bullmq": "^5.21.2",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
