@@ -1,5 +1,5 @@
 # OpenTelemetry-BullMQ-intro
-This project is a companion repository for a tutorial that demonstrates how to build a simple newsletter system using BullMQ for background job processing, OpenTelemetry for performance monitoring and tracing, and the BullMQ-otel package for integrating these two powerful tools.
+This project is a companion repository for a [tutorial](https://blog.taskforce.sh/how-to-integrate-bullmqs-telemetry-on-a-newsletters-subscription-application-2/) that demonstrates how to build a simple newsletter system using BullMQ for background job processing, OpenTelemetry for performance monitoring and tracing, and the BullMQ-otel package for integrating these two powerful tools.
 
 ## Motivation
 I wanted to create a practical example that shows how to use OpenTelemetry and BullMQ-otel to monitor and trace jobs in a BullMQ queue within a real-world application context.
