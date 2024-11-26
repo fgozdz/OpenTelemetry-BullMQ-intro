@@ -22,7 +22,7 @@ class NewsletterController {
     
     async unsubcribeFromNewsletter(req: Request, res: Response, next: NextFunction) {
         try {
-            const unsubscribedUser = await NewsletterService.unsubcribeFromNewsletter(req.body.email);
+            const unsubscribedUser = await NewsletterService.unsubscribeFromNewsletter(req.body.email);
             if (!unsubscribedUser) {
                 return res.json({message: 'user is not a member of a newsletter'});
             }
