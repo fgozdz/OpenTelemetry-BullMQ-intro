@@ -9,7 +9,7 @@ const { bullmqConfig } = config;
 class NewsletterService {
     private queue: Queue;
     private subscribedUserCRUD: typeof SubscribedUserCrud;
-    private cronPattern: '0 0 12 * * 5';
+    private cronPattern = '0 0 12 * * 5';
 
     constructor() {
         this.queue = new Queue<NodemailerInterface>(bullmqConfig.queueName, {
