@@ -14,7 +14,14 @@ class NewsletterService {
     constructor() {
         this.queue = new Queue<NodemailerInterface>(bullmqConfig.queueName, {
             connection: bullmqConfig.connection,
-            telemetry: new BullMQOtel('example-tracer'),
+            telemetry: new BullMQOtel({
+                traces: {
+                    name: 'example-tracer',
+                },
+                metrics: {
+                    name: 'example-metrics',
+                },
+            }),
         });
 
         this.subscribedUserCRUD = SubscribedUserCrud;
