@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@opentelemetry/exporter-metrics-otlp-proto": "^0.54.0",
+    "@opentelemetry/exporter-prometheus": "^0.56.0",
     "@opentelemetry/exporter-trace-otlp-proto": "^0.54.0",
     "@opentelemetry/instrumentation-express": "^0.44.0",
     "@opentelemetry/instrumentation-http": "^0.54.0",
